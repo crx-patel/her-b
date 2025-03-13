@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise! 🎁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .surprise-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        .btn {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 1em;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #e91e63;
+        }
+        .hidden {
+            display: none;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .image-container div {
+            flex: 1;
+            position: relative;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .image-text {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🎉 Main Section -->
+    <div class="surprise-container" id="main-section">
+        <h1>🎉 Surprise! 🎉</h1>
+        <p>Wishing you a day filled with love, joy, and all the happiness in the world! ❤️</p>
+        
+        <button class="btn" onclick="showSection('meet-section')">📸 First & Second Meet</button>
+        <button class="btn" onclick="showSection('moment-section')">🎥 Special Moment</button>
+        <button class="btn" onclick="startGame()">🎮 Fun Game</button>
+    </div>
+
+    <!-- 📸 First & Second Meet Section -->
+    <div class="surprise-container hidden" id="meet-section">
+        <h2>📸 First & Second Meet</h2>
+        <div class="image-container">
+            <div>
+                <span class="image-text">First Meet</span>
+                <img src="image\first.jpg" alt="First Meet">
+            </div>
+            <div>
+                <span class="image-text">Second Meet</span>
+                <img src="image/second.jpg" alt="Second Meet">
+            </div>
+        </div>
+        <button class="btn" onclick="goBack()">⬅ Back</button>
+    </div>
+
+    <!-- 🎥 Special Moment Section -->
+    <div class="surprise-container hidden" id="moment-section">
+        <h2>🎥 Special Moment</h2>
+        <video width='100%' controls>
+            <source src='video\VN20250314_002459.mp4' type='video/mp4'>
+        </video>
+        <button class="btn" onclick="goBack()">⬅ Back</button>
+    </div>
+
+    <!-- 🎮 Fun Game Section -->
+    <div class="surprise-container hidden" id="game-section">
+        <h2>🎮 Fun Game</h2>
+        <div id='question-container'></div>
+        <button class="btn" onclick="goBack()">⬅ Back</button>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.getElementById("main-section").classList.add("hidden");
+            document.getElementById(sectionId).classList.remove("hidden");
+        }
+
+        function goBack() {
+            document.querySelectorAll(".surprise-container").forEach(el => el.classList.add("hidden"));
+            document.getElementById("main-section").classList.remove("hidden");
+        }
+
+        let questions = [
+            { question: "Where did we first meet?", options: ["College", "Park", "Mall", "Restaurant"] },
+            { question: "What was the first thing you noticed about me?", options: ["Smile", "Eyes", "Voice", "Personality"] },
+            { question: "Who is more likely to plan surprise dates?", options: ["Me", "You", "Both together", "We don't need surprises"] },
+            { question: "What makes our relationship special?", options: ["Trust", "Love", "Understanding", "All of the above"] },
+            { question: "What is our favorite thing to do together?", options: ["Long drives", "Watching movies", "Eating food", "Talking for hours"] },
+            { question: "If we ever have a fight, what will we do?", options: ["Talk and solve it", "Give space and then talk", "Hug and forget", "We never fight!"] },
+            { question: "Which one of us always says 'I love you' first?", options: ["Me", "You", "Both together", "No need, we feel it"] },
+            { question: "If I am sad, what will you do?", options: ["Hug me", "Crack a joke", "Take me for a walk", "Let me vent out"] },
+            { question: "What do we love the most about each other?", options: ["Honesty", "Care", "Loyalty", "Everything"] },
+            { question: "Where do we see ourselves in 10 years?", options: ["Married and happy", "Traveling the world", "Building our dream life together", "All of the above"] }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function startGame() {
+            showSection('game-section');
+            currentQuestionIndex = 0;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            let container = document.getElementById("question-container");
+            let q = questions[currentQuestionIndex];
+            container.innerHTML = `<h3>${q.question}</h3>`;
+            q.options.forEach(option => {
+                container.innerHTML += `<button class='btn' onclick='nextQuestion()'>${option}</button> `;
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                document.getElementById("question-container").innerHTML = `<h2>💖 This game proves that we are meant to be together forever! 💑<br> No matter what happens, we will always stay together! ❤️🔥</h2>`;
+            }
+        }
+    </script>
+</body>
+</html>

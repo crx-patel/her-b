@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+.hidden {
+    display: none;
+}
+.btn {
+    display: inline-block;
+    background-color: #ff4081;
+    color: white;
+    padding: 15px 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    transition: 0.4s;
+}
+.btn:hover {
+    background-color: #e91e63;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+}
+img {
+    width: 300px;
+    margin-top: 20px;
+    transition: transform 0.5s;
+}

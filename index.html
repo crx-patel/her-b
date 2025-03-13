@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Start Button -->
+    <div class="start-container">
+        <button class="btn" onclick="startCelebration()">🎉 Start 🎉</button>
+    </div>
+
+    <!-- Celebration Content (Initially Hidden) -->
+    <div id="celebration" class="hidden">
+        <h1 id="birthday-text">🎂 Happy Birthday Nisha Meri Sugania ❤️</h1>
+
+        <!-- Balloons Animation Container -->
+        <div class="balloon-container" id="balloon-container"></div>
+
+        <!-- Personal Message Section -->
+        <div class="message-container">
+            <img src="image/Picsart_25-03-13_22-33-23-970 (1).png" alt="Special Image" class="message-image">
+            <h2> 💖</h2>
+            <p id="default-message">
+                Happy Birthday Meri Sona and appko pata hai aap mere liye kya ho mante hein ladai krte hein lekin pyar kabhi kam nhi hua mera kabhi nahi . Aur tum mere liye  Hmesha highesht priority ho . Aur tum meri jaan ho . Tumse bhut hi jyda pyar krte aur ye sach hai . Na ki dikhawa kr rhe kyuki aapka bday hai .Jab se meri life me aayi ho khusiyan hi aayi phle se bhut jyda khus rhta hu . Aur mai Tumse
+                sadi krke bachche krna chhahta hu .  . Aur itta pyar dene k liye k bhut bhut thanks last me pichhle sal ki trah mai chhata hu aapka sara birthday mai hi wish kru koi aur na aaye aur bhala bura tum mere sath hi rho ..
+                I love uhhhh soooooooooooooooooooooooooo muuuuuuuuuchhhhhhhhhhh  meri jaan pran meri sugni babuni hamar. Dil se love uhhhhh babu..💕 yha pe jo maine likha utta storage nhi thi to kat chhaat krna pra sorry 
+
+ ❤️💕
+            </p>
+        </div>
+
+        <!-- Music Control Button -->
+        <button id="music-btn" class="btn">🔊 Play Music</button>
+
+        <!-- Buttons Below -->
+        <div class="btn-container">
+            <a href="surprise.html" id="surprise-btn" class="btn">🎁 Click Here for Surprise 🎁</a>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="mp3/happy-birthday-background-music-298561.mp3" type="audio/mpeg">
+        <source src="mp3/happy-birthday-background-music-298561.ogg" type="audio/ogg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        function startCelebration() {
+            document.querySelector('.start-container').classList.add('hidden');
+            let celebrationDiv = document.getElementById("celebration");
+            celebrationDiv.classList.remove("hidden");
+            celebrationDiv.style.display = "block"; // Ensures visibility
+            launchBalloons();
+            addConfetti();
+        }
+
+        // Music Toggle Function
+        document.getElementById("music-btn").addEventListener("click", function () {
+            let audio = document.getElementById("bg-music");
+            if (audio.paused) {
+                audio.play();
+                this.textContent = "🔇 Pause Music";
+            } else {
+                audio.pause();
+                this.textContent = "🔊 Play Music";
+            }
+        });
+
+        function launchBalloons() {
+            let container = document.getElementById("balloon-container");
+            for (let i = 0; i < 10; i++) {
+                let balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                balloon.style.left = Math.random() * 100 + "vw";
+                balloon.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                container.appendChild(balloon);
+                setTimeout(() => {
+                    balloon.remove();
+                }, 5000);
+            }
+        }
+
+        function addConfetti() {
+            let confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            document.body.appendChild(confetti);
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+    </script>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            background-color: #ffebf0;
+            overflow: hidden;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .message-container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            background: #ff4d6d;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            position: relative;
+            overflow: visible;
+        }
+        .message-container p {
+            max-height: none;
+            white-space: normal;
+            overflow: visible;
+            text-align: center;
+            font-size: 18px;
+        }
+        .message-image {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        .balloon-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background: red;
+            position: absolute;
+            bottom: -100px;
+            border-radius: 50%;
+            animation: floatUp 5s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .confetti {
+            width: 10px;
+            height: 10px;
+            background: yellow;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</body>
+</html>
